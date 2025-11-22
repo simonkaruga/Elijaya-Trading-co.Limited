@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header id="header">
   <div class="container">
     <div class="header-content">
@@ -21,8 +20,8 @@
           <p>Eco-Friendliness at Its Peak</p>
         </div>
       </div>
-      <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-      <nav id="nav">
+      <button class="mobile-menu-btn" onclick="toggleMenu()" aria-expanded="false" aria-controls="nav"><i class="fas fa-bars"></i></button>
+      <nav id="nav" role="navigation">
         <a href="#branding" onclick="closeMenu()">Branding</a>
         <a href="#packaging" onclick="closeMenu()">Packaging</a>
         <a href="#why-us" onclick="closeMenu()">Why Us</a>
@@ -34,146 +33,112 @@
   </div>
 </header>
 
-<!-- HERO SECTION -->
 <section class="hero" style="background: url('images/banners.jpg') center/cover no-repeat;">
   <div class="container">
     <div class="hero-content">
-      <h2>Shape Your Brand,<br>Save Our Planet.</h2>
-      <p>Your trusted Nairobi partner for high-quality, eco-friendly promotional products and packaging.</p>
-      <a href="#contact" class="btn">Start Your Eco-Friendly Project</a>
+      <h2>Where Quality Printing Meets Strategic Branding</h2>
+      <p>We offer modern, results-driven branding solutions designed to help your business stand out with confidence.</p>
+      <a href="#contact" class="btn">Let’s Get Started</a>
     </div>
   </div>
 </section>
 
-<!-- BRANDING SECTION -->
+
 <section class="section" id="branding">
   <div class="container">
     <h2 class="section-title">Branding Services: Conscious Merchandise</h2>
-    <p class="section-subtitle">From professional apparel to memorable promotional items, we bring your brand to life with sustainable, high-quality products.</p>
+    <p class="section-subtitle">From professional apparel to memorable promotional items, we bring your brand to life with high-quality, impactful products.</p>
+
     <div class="services-grid">
 
       <div class="service-card">
-        <img src="images/brochures.jpg" alt="Eco-friendly Brochures" class="service-img">
+        <img src="images/brochures.jpg" alt="Brochures" class="service-img">
         <h3>Brochures</h3>
-        <p>Eco-friendly brochures printed on recycled paper.</p>
+        <p>Beautifully designed brochures that help you share your story in a clear and engaging way.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/polo-tshirts.jpg" alt="Eco-friendly T-Shirts & Polo T-Shirts" class="service-img">
+        <img src="images/polo-tshirts.jpg" alt="T-Shirts & Polo T-Shirts" class="service-img">
         <h3>T-Shirts & Polo T-Shirts</h3>
-        <p>Custom t-shirts and polo shirts made with sustainable fabrics.</p>
+        <p>Comfortable, stylish apparel customized with your brand for events, teams, and promotions.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/notebooks.jpg" alt="Eco-friendly Notebooks" class="service-img">
+        <img src="images/notebooks.jpg" alt="Notebooks" class="service-img">
         <h3>Notebooks</h3>
-        <p>Custom notebooks made with recycled paper for your business needs.</p>
+        <p>Clean, modern notebooks that make great company giveaways or everyday office essentials.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/banners.jpg" alt="Eco-friendly Banners" class="service-img">
+        <img src="images/banners.jpg" alt="Banners" class="service-img">
         <h3>Banners</h3>
-        <p>Reusable and eco-friendly banners for events and promotions.</p>
+        <p>Bold, high-quality banners that grab attention at events, launches, and campaigns.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/caps.jpg" alt="Professional Caps" class="service-img">
+        <img src="images/caps.jpg" alt="Caps" class="service-img">
         <h3>Caps</h3>
-        <p>Professional headwear designed sustainably for your brand.</p>
+        <p>Smart, branded caps that give your team and customers a fresh and unified look.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/reflectors.jpg" alt="Safety Reflectors" class="service-img">
+        <img src="images/reflectors.jpg" alt="Reflectors" class="service-img">
         <h3>Reflectors</h3>
-        <p>High-visibility safety reflectors for corporate events and giveaways.</p>
+        <p>Practical, high-visibility reflectors perfect for outdoor events, activations, and giveaways.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/mug.jpg" alt="Eco-friendly Mugs" class="service-img">
+        <img src="images/mug.jpg" alt="Branded Mugs" class="service-img">
         <h3>Mugs</h3>
-        <p>Branded mugs made from sustainable materials for lasting use.</p>
+        <p>Everyday mugs that keep your brand in front of clients with every sip.</p>
       </div>
 
       <div class="service-card">
-        <img src="images/bottles.jpg" alt="Reusable Water Bottles" class="service-img">
+        <img src="images/bottles.jpg" alt="Branded Bottles" class="service-img">
         <h3>Bottles</h3>
-        <p>Reusable water bottles promoting sustainability and your brand.</p>
+        <p>Stylish branded bottles designed for daily use great for staff, gifts, and promotions.</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- PACKAGING SECTION -->
+  </div>
+</section>
+
 <section class="section" id="packaging" style="background: #fff;">
   <div class="container">
     <h2 class="section-title">Packaging Solutions & Laundry Bag Manufacturing</h2>
     <p class="section-subtitle">Sustainable packaging and laundry bags that enhance your brand while protecting the planet.</p>
-
     <div class="services-grid">
-      <div class="service-card">
-        <img src="images/gift-bags.jpg" alt="Carrier Bags" class="service-img">
-        <h3>Carrier Bags</h3>
-        <p>Reusable carrier bags designed for your brand and eco-friendly use.</p>
-      </div>
-
-      <div class="service-card">
-        <img src="images/laundry-bag.jpg" alt="Laundry Bags" class="service-img">
-        <h3>Laundry Bags</h3>
-        <p>High-quality laundry bags suitable for institutional and business use.</p>
-      </div>
-
-      <div class="service-card">
-        <img src="images/jute-bags.jpg" alt="Jute Bags" class="service-img">
-        <h3>Jute Bags</h3>
-        <p>Durable and biodegradable jute bags that promote sustainability.</p>
-      </div>
-
-      <div class="service-card">
-        <img src="images/laundry-bag-manufacturing.jpg" alt="Laundry Bag Manufacturing" class="service-img">
-        <h3>Laundry Bag Manufacturing</h3>
-        <p>We manufacture high-quality laundry bags tailored to your specifications.</p>
-      </div>
+      <div class="service-card"><img src="images/gift-bags.jpg" alt="Carrier Bags" class="service-img"><h3>Carrier Bags</h3><p>Reusable carrier bags designed for your brand and eco-friendly use.</p></div>
+      <div class="service-card"><img src="images/laundry-bag.jpg" alt="Laundry Bags" class="service-img"><h3>Laundry Bags</h3><p>High-quality laundry bags suitable for institutional and business use.</p></div>
+      <div class="service-card"><img src="images/jute-bags.jpg" alt="Jute Bags" class="service-img"><h3>Jute Bags</h3><p>Durable and biodegradable jute bags that promote sustainability.</p></div>
+      <div class="service-card"><img src="images/laundry-bag-manufacturing.jpg" alt="Laundry Bag Manufacturing" class="service-img"><h3>Laundry Bag Manufacturing</h3><p>We manufacture high-quality laundry bags tailored to your specifications.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURES SECTION -->
 <section class="features-section" id="why-us">
   <div class="container">
     <h2 class="section-title">The Eljaya Advantage</h2>
     <p class="section-subtitle">We are committed to quality, rapid delivery, and transparent ethical sourcing, making sustainability easy for your business.</p>
     <div class="features-grid">
-      <div class="feature-box">
-        <div class="feature-icon"><i class="fas fa-leaf"></i></div>
-        <h3>Sustainability First</h3>
-        <p>Our core mission: providing products that are environmentally sustainable and ethically sourced.</p>
-      </div>
-      <div class="feature-box">
-        <div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div>
-        <h3>Nairobi-Based Supply</h3>
-        <p>Reliable service and faster turnaround times right here in Kenya.</p>
-      </div>
-      <div class="feature-box">
-        <div class="feature-icon"><i class="fas fa-paint-brush"></i></div>
-        <h3>Full Customization</h3>
-        <p>Complete control over design, materials, and branding tailored perfectly to your identity.</p>
-      </div>
-      <div class="feature-box">
-        <div class="feature-icon"><i class="fas fa-gem"></i></div>
-        <h3>Guaranteed Quality</h3>
-        <p>We ensure every item meets the highest standards of durability and finish.</p>
-      </div>
+      <div class="feature-box"><div class="feature-icon"><i class="fas fa-leaf"></i></div><h3>Sustainability First</h3><p>Our core mission: providing products that are environmentally sustainable and ethically sourced.</p></div>
+      <div class="feature-box"><div class="feature-icon"><i class="fas fa-map-marker-alt"></i></div><h3>Nairobi-Based Supply</h3><p>Reliable service and faster turnaround times right here in Kenya.</p></div>
+      <div class="feature-box"><div class="feature-icon"><i class="fas fa-paint-brush"></i></div><h3>Full Customization</h3><p>Complete control over design, materials, and branding tailored perfectly to your identity.</p></div>
+      <div class="feature-box"><div class="feature-icon"><i class="fas fa-gem"></i></div><h3>Guaranteed Quality</h3><p>We ensure every item meets the highest standards of durability and finish.</p></div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIALS SECTION -->
 <section id="testimonials">
   <div class="container">
     <h2 class="section-title">What Our Clients Say</h2>
     <p class="section-subtitle">Testimonials from our satisfied clients</p>
-    <div id="testimonialTrack"></div>
+    <div class="testimonial-slider-wrapper">
+        <div id="testimonialTrack"></div>
+    </div>
     <div style="margin-top:20px;">
       <button onclick="prevTestimonial()" class="btn-secondary">Prev</button>
       <button onclick="nextTestimonial()" class="btn-secondary">Next</button>
@@ -181,53 +146,61 @@
   </div>
 </section>
 
-<!-- FAQ SECTION -->
 <section id="faq">
   <div class="container">
     <h2 class="section-title">Frequently Asked Questions</h2>
     <div>
-      <button class="faq-question" onclick="toggleFaq(this)">What materials do you use for eco-friendly products?</button>
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">What materials do you use for eco-friendly products?</button>
       <div class="faq-answer">We use recycled, biodegradable, and sustainable materials to ensure environmental responsibility.</div>
 
-      <button class="faq-question" onclick="toggleFaq(this)">Do you offer custom branding on products?</button>
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">Do you offer custom branding on products?</button>
       <div class="faq-answer">Yes, all our products can be fully customized to reflect your brand's identity.</div>
 
-      <button class="faq-question" onclick="toggleFaq(this)">How long does production take?</button>
+      <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">How long does production take?</button>
       <div class="faq-answer">Production timelines vary by order size, typically ranging from 7-21 business days.</div>
     </div>
   </div>
 </section>
 
-<!-- CTA SECTION -->
 <section class="cta-section">
   <div class="container">
-    <h2>Ready to Go Green and Elevate Your Brand?</h2>
-    <p>Contact us today for a free consultation and discover sustainable solutions that fit your budget.</p>
-    <a href="#contact" class="btn btn-secondary">Get Your Free Quote</a>
+    <h2>Let’s Build a Stronger Brand Together</h2>
+    <p>Reach out to us for reliable, high-quality branding and printing services tailored to your business needs.</p>
+    <a href="#contact" class="btn btn-secondary">Contact Us Today</a>
   </div>
 </section>
 
-<!-- CONTACT SECTION -->
+
 <section class="contact-section" id="contact">
   <div class="container">
     <h2 class="section-title">Let's Connect</h2>
     <p class="section-subtitle">Reach out via phone, email, or use the form below to start your project.</p>
+    
     <div class="contact-grid">
-      <div class="contact-item" onclick="window.location.href='mailto:eljayasupplies@gmail.com'">
+      <!-- Email -->
+      <div class="contact-item">
         <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
         <h3>Email Us</h3>
         <a href="mailto:eljayasupplies@gmail.com">eljayasupplies@gmail.com</a>
       </div>
-      <div class="contact-item" onclick="window.location.href='tel:+254718146386'">
+
+      <!-- Phone -->
+      <div class="contact-item">
         <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
         <h3>Call Us</h3>
         <a href="tel:+254718146386">+254 718 146 386</a>
       </div>
-      <div class="contact-item" onclick="window.open('https://wa.me/254718146386', '_blank')">
+
+      <!-- WhatsApp -->
+      <div class="contact-item">
         <div class="contact-item-icon"><i class="fab fa-whatsapp"></i></div>
         <h3>WhatsApp</h3>
-        <a href="https://wa.me/254718146386" target="_blank">Chat with Us Now</a>
+        <a href="https://api.whatsapp.com/send?phone=254718146386" target="_blank" rel="noopener noreferrer">
+          Chat with Us Now
+        </a>
       </div>
+
+      <!-- Location -->
       <div class="contact-item">
         <div class="contact-item-icon"><i class="fas fa-map-marker-alt"></i></div>
         <h3>Location</h3>
@@ -235,6 +208,7 @@
       </div>
     </div>
 
+    <!-- Contact Form -->
     <div class="contact-form">
       <form id="contactForm" onsubmit="handleSubmit(event)">
         <div class="form-group">
@@ -269,7 +243,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+
 <footer>
   <div class="container">
     <p style="font-size: 18px; font-weight: 600;">Eljaya Trading Co. Limited</p>

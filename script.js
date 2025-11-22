@@ -1,79 +1,92 @@
-// Mobile Menu Toggle
+// Mobile Menu
 function toggleMenu() {
-    const nav = document.getElementById("nav");
-    nav.classList.toggle("show");
+  const nav = document.getElementById('nav');
+  nav.classList.toggle('active');
 }
 
 function closeMenu() {
-    document.getElementById("nav").classList.remove("show");
+  const nav = document.getElementById('nav');
+  nav.classList.remove('active');
 }
 
-// Scroll To Top Button
-const scrollTopBtn = document.getElementById("scrollTop");
-
-window.onscroll = function() {
-    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-        scrollTopBtn.style.display = "block";
-    } else {
-        scrollTopBtn.style.display = "none";
-    }
+// Scroll Top
+const scrollTopBtn = document.getElementById('scrollTop');
+window.onscroll = () => {
+  scrollTopBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
 };
 
 function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Contact Form Submission (dummy)
-function handleSubmit(event) {
-    event.preventDefault();
-    alert("Thank you! Your message has been sent.");
-    document.getElementById("contactForm").reset();
+// FAQ Accordion
+function toggleFaq(el) {
+  el.classList.toggle('active');
+  const answer = el.nextElementSibling;
+  answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
 }
 
-// Testimonials Data
+// Testimonial Slider
 const testimonials = [
-    { name: "Alice K.", company: "GreenTech Ltd.", rating: 5, text: "Eljaya provided excellent sustainable branding solutions. Highly recommended!" },
-    { name: "Brian M.", company: "EcoHome Kenya", rating: 4, text: "Great quality products and very responsive team. Loved the custom packaging." },
-    { name: "Catherine W.", company: "Nairobi Events", rating: 5, text: "Professional service and eco-friendly materials that impressed our clients." }
+  { stars: 5, text: "Great eco-friendly products! Our branding has never looked better.", name: "Jane Doe" },
+  { stars: 4, text: "Fast delivery and high-quality materials. Highly recommend.", name: "John Smith" },
+  { stars: 5, text: "Excellent service and very customizable options.", name: "Mary Johnson" }
 ];
 
-let currentTestimonial = 0;
+const track = document.getElementById('testimonialTrack');
+let currentIndex = 0;
+
+function renderTestimonials() {
+  track.innerHTML = '';
+  testimonials.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'testimonial-card';
+    card.innerHTML = `
+      <div class="testimonial-stars">${'★'.repeat(t.stars)}</div>
+      <div class="testimonial-text">${t.text}</div>
+      <div class="testimonial-name">${t.name}</div>
+    `;
+    track.appendChild(card);
+  });
+}
+renderTestimonials();
 
 function showTestimonial(index) {
-    const testimonialContainer = document.getElementById("testimonialTrack");
-    testimonialContainer.innerHTML = `
-        <div class="testimonial-card">
-            <div class="testimonial-stars">${'★'.repeat(testimonials[index].rating)}</div>
-            <p class="testimonial-text">"${testimonials[index].text}"</p>
-            <div>
-                <p class="testimonial-name">${testimonials[index].name}</p>
-                <p class="testimonial-company">${testimonials[index].company}</p>
-            </div>
-        </div>
-    `;
-}
-
-// Initial render
-document.addEventListener("DOMContentLoaded", () => {
-    showTestimonial(currentTestimonial);
-});
-
-// Next / Previous controls
-function nextTestimonial() {
-    currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-    showTestimonial(currentTestimonial);
+  const width = track.clientWidth;
+  track.style.transform = `translateX(-${index * width}px)`;
 }
 
 function prevTestimonial() {
-    currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-    showTestimonial(currentTestimonial);
+  currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+  showTestimonial(currentIndex);
 }
 
-// Optional: Auto-rotate testimonials every 5 seconds
-setInterval(nextTestimonial, 5000);
-
-// FAQ toggle
-function toggleFaq(el) {
-    const answer = el.nextElementSibling;
-    answer.style.display = (answer.style.display === "block") ? "none" : "block";
+function nextTestimonial() {
+  currentIndex = (currentIndex + 1) % testimonials.length;
+  showTestimonial(currentIndex);
 }
+
+// Contact Form Submission via Formspree
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+  const formData = new FormData(contactForm);
+
+  fetch(contactForm.action, {
+    method: 'POST',
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(response => {
+    if (response.ok) {
+      alert('Thank you! Your message has been sent.');
+      contactForm.reset();
+    } else {
+      alert('Oops! There was a problem sending your message.');
+    }
+  })
+  .catch(error => {
+    alert('Oops! There was a problem sending your message.');
+    console.error(error);
+  });
+});
