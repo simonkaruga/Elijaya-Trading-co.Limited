@@ -390,6 +390,64 @@
     const debouncedHighlight = debounce(highlightNav, 100);
     window.addEventListener('scroll', debouncedHighlight);
     
+    /* ===== CONTACT FORM HANDLING ===== */
+    const contactForm = document.getElementById('contactForm');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Basic validation
+            if (!data.name || !data.email || !data.phone || !data.service || !data.message) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Create mailto link as fallback
+            const subject = encodeURIComponent('New Contact Form Submission - ' + data.service);
+            const body = encodeURIComponent(`
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone}
+Company: ${data.company || 'Not provided'}
+Service: ${data.service}
+Message: ${data.message}
+
+Sent from Eljaya Trading Co. website contact form.
+            `);
+
+            const mailtoLink = `mailto:eljayasupplies@gmail.com?subject=${subject}&body=${body}`;
+
+            // Try to open email client
+            try {
+                window.location.href = mailtoLink;
+                showNotification('Opening your email client...', 'success');
+
+                // Reset form after short delay
+                setTimeout(function() {
+                    contactForm.reset();
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+
+            } catch (error) {
+                console.error('Email client error:', error);
+                showNotification('Unable to open email client. Please contact us directly at eljayasupplies@gmail.com', 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+
     /* ===== LAZY LOAD IMAGES ===== */
     if ('loading' in HTMLImageElement.prototype) {
         const images = document.querySelectorAll('img[loading="lazy"]');
