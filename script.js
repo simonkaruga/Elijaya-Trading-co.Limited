@@ -282,39 +282,66 @@
     const contactForm = document.getElementById('contactForm');
 
     function handleSubmit(event) {
-        // Don't prevent default - let Formspree handle the form submission
-        // but add loading state and success feedback
+        event.preventDefault();
 
         const submitBtn = contactForm.querySelector('.btn-primary');
         const originalText = submitBtn.innerHTML;
 
-        // Show loading state immediately
+        // Show loading state
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
         // Show initial notification
         showNotification('Sending your message...', 'info');
 
-        // Formspree will redirect to a success page or show success message
-        // We'll handle this with a timeout as fallback
-        setTimeout(function() {
-            if (!contactForm.submitted) {
-                // If form hasn't been submitted yet, show success (Formspree may handle it)
+        // Prepare form data
+        const formData = new FormData(contactForm);
+
+        // Send to PHP script
+        fetch('contact.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                // Success state
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
                 submitBtn.style.background = 'var(--color-secondary)';
-                showNotification('Thank you! Your message has been sent successfully. We\'ll respond within 2 hours during business hours.', 'success');
+                showNotification(data.message, 'success');
 
                 // Reset form
                 contactForm.reset();
-
-                // Reset button after 3 seconds
-                setTimeout(function() {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '';
-                }, 3000);
+            } else if (data.errors) {
+                // Validation errors
+                const errorMessage = data.errors.join('<br>');
+                submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
+                submitBtn.style.background = '#f44336';
+                showNotification('Please check the form: ' + errorMessage, 'error');
+            } else {
+                // Generic error
+                submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
+                submitBtn.style.background = '#f44336';
+                showNotification(data.error || 'Sorry, there was a problem sending your message.', 'error');
             }
-        }, 2000);
+        })
+        .catch(function(error) {
+            // Network error
+            submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
+            submitBtn.style.background = '#f44336';
+            showNotification('Network error. Please try again or contact us directly.', 'error');
+            console.error('Form submission error:', error);
+        })
+        .finally(function() {
+            // Reset button after 3 seconds
+            setTimeout(function() {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.background = '';
+            }, 3000);
+        });
     }
     
     // Make handleSubmit available globally
