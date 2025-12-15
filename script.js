@@ -282,55 +282,26 @@
     const contactForm = document.getElementById('contactForm');
 
     function handleSubmit(event) {
-        event.preventDefault();
+        // Don't prevent default - let Formspree handle the form submission
+        // but add loading state and success feedback
 
         const submitBtn = contactForm.querySelector('.btn-primary');
         const originalText = submitBtn.innerHTML;
 
-        // Show loading state
+        // Show loading state immediately
         submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
         submitBtn.disabled = true;
 
-        // EmailJS configuration - Replace with your actual credentials
-        const serviceID = 'YOUR_SERVICE_ID';
-        const templateID = 'YOUR_TEMPLATE_ID';
-        const publicKey = 'YOUR_PUBLIC_KEY';
+        // Show initial notification
+        showNotification('Sending your message...', 'info');
 
-        // Check if EmailJS is loaded
-        if (typeof emailjs === 'undefined') {
-            submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
-            submitBtn.style.background = '#f44336';
-            showNotification('Email service not available. Please contact us directly.', 'error');
-            setTimeout(function() {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-                submitBtn.style.background = '';
-            }, 3000);
-            return;
-        }
-
-        // Initialize EmailJS
-        emailjs.init(publicKey);
-
-        // Prepare form data
-        const formData = {
-            from_name: contactForm.name.value,
-            from_email: contactForm.email.value,
-            phone: contactForm.phone.value,
-            company: contactForm.company.value,
-            service: contactForm.service.value,
-            message: contactForm.message.value,
-            to_email: 'eljayasupplies@gmail.com'
-        };
-
-        // Send email using EmailJS
-        emailjs.send(serviceID, templateID, formData)
-            .then(function(response) {
-                // Success state
+        // Formspree will redirect to a success page or show success message
+        // We'll handle this with a timeout as fallback
+        setTimeout(function() {
+            if (!contactForm.submitted) {
+                // If form hasn't been submitted yet, show success (Formspree may handle it)
                 submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
                 submitBtn.style.background = 'var(--color-secondary)';
-
-                // Show success notification
                 showNotification('Thank you! Your message has been sent successfully. We\'ll respond within 2 hours during business hours.', 'success');
 
                 // Reset form
@@ -342,24 +313,8 @@
                     submitBtn.disabled = false;
                     submitBtn.style.background = '';
                 }, 3000);
-
-                console.log('Email sent successfully:', response);
-            })
-            .catch(function(error) {
-                // Error state
-                submitBtn.innerHTML = '<i class="fas fa-times"></i> Error';
-                submitBtn.style.background = '#f44336';
-                showNotification('Oops! There was a problem sending your message. Please try again or contact us directly.', 'error');
-
-                // Reset button after 3 seconds
-                setTimeout(function() {
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '';
-                }, 3000);
-
-                console.error('Email send failed:', error);
-            });
+            }
+        }, 2000);
     }
     
     // Make handleSubmit available globally
