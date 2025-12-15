@@ -18,12 +18,19 @@ Formspree is much simpler than EmailJS - you don't need to set up email services
 
 ### 3. Update Your Website Code
 1. Open `index.html`
-2. Find this line in the contact form:
+2. Find this line in the contact form (around line 300):
 ```html
-<form id="contactForm" class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+<form id="contactForm" class="contact-form" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="POST">
 ```
 
-3. Replace `YOUR_FORM_ID` with your actual Form ID from the endpoint URL
+3. Replace `REPLACE_WITH_YOUR_FORM_ID` with your actual Form ID from the endpoint URL
+
+**Example:**
+If your endpoint URL is: `https://formspree.io/f/xeqwykrl`
+Then change the line to:
+```html
+<form id="contactForm" class="contact-form" action="https://formspree.io/f/xeqwykrl" method="POST">
+```
 
 ### 4. Customize Form Settings (Optional)
 1. In Formspree dashboard, click on your form
